@@ -15,7 +15,7 @@ class FitnessCalculator
   def calcuate_available_spaces(board)
     array = []
     board.each do |s|
-      if s != "X" && s != "O"
+      if s != @com && s != @hum
         array << s
       end
     end

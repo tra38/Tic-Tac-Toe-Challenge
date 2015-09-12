@@ -19,7 +19,7 @@ class Game
 
   def get_human_spot
     spot = gets.chomp.to_i
-    if (@board[spot] != "X" && @board[spot] != "O" && (0..9).include?(spot) )
+    if (@board[spot] != @com && @board[spot] != @hum && (0..9).include?(spot) )
       @board[spot] = @hum
     else
       puts View.display_error(spot)

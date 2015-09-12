@@ -12,7 +12,7 @@ module StatusChecking
 	end
 
 	def tie?(b)
-	  b.all? { |s| s == "X" || s == "O" }
+	  b.all? { |s| s == @com || s == @hum }
 	end
-	
+
 end
