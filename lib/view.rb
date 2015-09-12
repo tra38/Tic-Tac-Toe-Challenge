@@ -13,7 +13,7 @@ module View
 	end
 
 	def self.display_error(spot)
-		"I am sorry, but Spot# #{spot} is an invalid choice to make. Please make another selection."
+		"I am sorry, but Spot #{spot} is an invalid choice to make. Please make another selection."
 	end
 
 end
