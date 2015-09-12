@@ -31,13 +31,13 @@ class Game
   end
 
   def human_input
-    gets.chomp.to_i
+    gets.chomp
   end
 
   def get_human_spot
     spot = human_input
-    if (@board[spot] != @com.symbol && @board[spot] != @hum.symbol && (0..9).include?(spot) )
-      @board[spot] = @hum.symbol
+    if ((0..9).include?(spot.to_i) && @board[spot.to_i] != (@com.symbol || @hum.symbol) && spot.to_i.to_s == spot.to_s)
+      @board[spot.to_i] = @hum.symbol
     else
       puts View.display_error(spot)
       get_human_spot
