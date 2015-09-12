@@ -1,6 +1,7 @@
 require_relative 'status_checking'
 require_relative 'fitness_calculator'
 require_relative 'view'
+require_relative 'player'
 
 class Game
   attr_reader :board, :fitness
@@ -8,8 +9,8 @@ class Game
 
   def initialize(board)
     @board = board
-    @com = "X"
-    @hum = "O"
+    @com = Player.new(type: :computer, symbol: "X")
+    @hum = Player.new(type: :human, symbol: "O")
     @fitness = FitnessCalculator.new(board: board, com: @com, hum: @hum)
   end
 
