@@ -10,8 +10,7 @@ puts View.welcome
 puts View.instructions
 
 until game.has_ended?
-	game.get_human_spot
-	game.get_computer_spot unless game.has_ended?
+	game.get_next_move
 	puts board
 end
 
