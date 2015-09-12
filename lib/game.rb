@@ -12,6 +12,8 @@ class Game
     @board = board
     @com = Player.new(type: :computer, symbol: "X")
     @hum = Player.new(type: :human, symbol: "O")
+    @com_symbol = @com.symbol
+    @hum_symbol = @hum.symbol
     @fitness = FitnessCalculator.new(board: board, com: @com, hum: @hum)
     @current_player = @hum
     @next_player = @com
@@ -51,7 +53,7 @@ class Game
         spot = 4
         @board[spot] = @com.symbol
       else
-        spot = fitness.get_best_move(@com, board)
+        spot = fitness.get_best_move(@com.symbol, board)
         self.board[spot] = @com.symbol
       end
     end
