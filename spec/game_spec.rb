@@ -26,6 +26,12 @@ RSpec.describe Game do
       @game.get_human_spot
     end
 
+    it "- rejects 9 as an invalid input" do
+      allow(@game).to receive(:human_input).and_return(9,5)
+      expect(View).to receive(:display_error).with(9)
+      @game.get_human_spot
+    end
+
     it "- rejects words as an invalid input" do
       allow(@game).to receive(:human_input).and_return("dog",5)
       expect(View).to receive(:display_error).with("dog")

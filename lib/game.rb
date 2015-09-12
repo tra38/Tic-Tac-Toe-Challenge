@@ -36,7 +36,7 @@ class Game
 
   def get_human_spot
     spot = human_input
-    if ((0..9).include?(spot.to_i) && @board[spot.to_i] != (@com.symbol || @hum.symbol) && spot.to_i.to_s == spot.to_s)
+    if ((0..8).include?(spot.to_i) && @board[spot.to_i] != (@com.symbol || @hum.symbol) && spot.to_i.to_s == spot.to_s)
       @board[spot.to_i] = @hum.symbol
     else
       puts View.display_error(spot)
