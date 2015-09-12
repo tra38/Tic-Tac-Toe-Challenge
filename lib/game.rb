@@ -30,10 +30,15 @@ class Game
     self.next_player, self.current_player = self.current_player, self.next_player
   end
 
+  def human_input
+    gets.chomp.to_i
+  end
+
   def get_human_spot
-    spot = gets.chomp.to_i
-    if (@board[spot] != @com && @board[spot] != @hum && (0..9).include?(spot) )
-      @board[spot] = @hum
+    spot = human_input
+    puts self.board[spot]
+    if (@board[spot] != @com.symbol && @board[spot] != @hum.symbol && (0..9).include?(spot) )
+      @board[spot] = @hum.symbol
     else
       puts View.display_error(spot)
       get_human_spot

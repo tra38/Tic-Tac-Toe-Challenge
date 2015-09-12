@@ -1,5 +1,5 @@
 class Player
-  attr_reader :type
+  attr_reader :type, :symbol
 
   def initialize(args)
     @symbol = args[:symbol]
