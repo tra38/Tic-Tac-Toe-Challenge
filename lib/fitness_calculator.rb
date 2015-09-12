@@ -23,7 +23,6 @@ class FitnessCalculator
   end
 
   def computer_can_win?(future_board, space)
-    p future_board
     future_board[space.to_i] = @com_symbol
     return true if game_is_over(future_board)
   end
@@ -53,7 +52,6 @@ class FitnessCalculator
   def get_best_move(current_player, board)
     self.fitness = Hash.new(0)
     examine_possible_moves(current_player, board)
-    puts fitness
     best_moves = fitness.select { |k,v| v == fitness.values.max }
     (best_moves.keys.sample).to_i
   end
