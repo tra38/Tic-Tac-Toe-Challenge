@@ -36,7 +36,6 @@ class Game
 
   def get_human_spot
     spot = human_input
-    puts self.board[spot]
     if (@board[spot] != @com.symbol && @board[spot] != @hum.symbol && (0..9).include?(spot) )
       @board[spot] = @hum.symbol
     else
@@ -50,10 +49,10 @@ class Game
     until spot
       if @board[4] == "4"
         spot = 4
-        @board[spot] = @com
+        @board[spot] = @com.symbol
       else
         spot = fitness.get_best_move(@com, board)
-        self.board[spot] = @com
+        self.board[spot] = @com.symbol
       end
     end
   end
