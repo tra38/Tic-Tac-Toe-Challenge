@@ -1,42 +1,29 @@
 require_relative 'status_checking'
 require_relative 'fitness_calculator'
 require_relative 'view'
-require_relative 'player'
 
 class Game
   attr_reader :board, :fitness
-  attr_accessor :current_player, :next_player
   include StatusChecking
 
   def initialize(board)
     @board = board
-    @player_one = Player.new(symbol: "O", type: :human )
-    @player_two = Player.new(symbol: "X", type: :computer )
-    @fitness = FitnessCalculator.new(board: board, player_one: @player_one, player_two: @player_two)
-    @current_player = @player_one
-    @next_player = @player_two
+    @com = "X"
+    @hum = "O"
+    @fitness = FitnessCalculator.new(board: board, com: @com, hum: @hum)
   end
 
   def has_ended?
     game_is_over(@board) || tie?(@board)
   end
 
-  def get_next_move
-    if current_player.type == :human
-      get_human_spot(current_player)
-    else
-      get_computer_spot
-    end
-    self.current_player, self.next_player = self.next_player, self.current_player
-  end
-
-  def get_human_spot(current_player)
+  def get_human_spot
     spot = gets.chomp.to_i
-    if (@board[spot] != @com && @board[spot] != @hum && (0..8).include?(spot) )
-      @board[spot] = current_player
+    if (@board[spot] != @com && @board[spot] != @hum && (0..9).include?(spot) )
+      @board[spot] = @hum
     else
       puts View.display_error(spot)
-      get_human_spot(current_player)
+      get_human_spot
     end
   end
 
