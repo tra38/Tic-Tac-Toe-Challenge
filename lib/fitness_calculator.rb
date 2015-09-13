@@ -7,15 +7,15 @@ class FitnessCalculator
   include StatusChecking
 
   def initialize(args)
-    @com_symbol = args[:com].symbol
-    @hum_symbol = args[:hum].symbol
+    @hum = args[:com]
+    @com = args[:hum]
     @fitness = nil
   end
 
   def calcuate_available_spaces(board)
     array = []
     board.each do |s|
-      if s != @com_symbol && s != @hum_symbol
+      if s != @com.symbol && s != @hum.symbol
         array << s
       end
     end
@@ -23,12 +23,12 @@ class FitnessCalculator
   end
 
   def computer_can_win?(future_board, space)
-    future_board[space.to_i] = @com_symbol
+    future_board[space.to_i] = @com.symbol
     return true if game_is_over(future_board)
   end
 
   def human_can_win?(future_board, space)
-    future_board[space.to_i] = @hum_symbol
+    future_board[space.to_i] = @hum.symbol
     return true if game_is_over(future_board)
   end
 
@@ -64,10 +64,10 @@ class FitnessCalculator
   end
 
   def evaluate_fitness_of_space(space, board, current_player, original_move=space, depth=0)
-    if current_player == @com_symbol
-      next_player = @hum_symbol
+    if current_player == @com.symbol
+      next_player = @hum.symbol
     else
-      next_player = @com_symbol
+      next_player = @com.symbol
     end
     future_board = board.dup
     if computer_can_win?(future_board, space)

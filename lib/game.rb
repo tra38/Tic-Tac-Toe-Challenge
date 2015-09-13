@@ -12,8 +12,6 @@ class Game
     @board = board
     @com = Player.new(type: :computer, symbol: "X")
     @hum = Player.new(type: :human, symbol: "O")
-    @com_symbol = @com.symbol
-    @hum_symbol = @hum.symbol
     @fitness = FitnessCalculator.new(board: board, com: @com, hum: @hum)
     @current_player = @hum
     @next_player = @com
@@ -24,6 +22,7 @@ class Game
   end
 
   def get_next_move
+    puts View.display_turn(@current_player.symbol)
     if @current_player.type == :human
       get_human_spot
     else

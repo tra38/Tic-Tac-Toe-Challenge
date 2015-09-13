@@ -12,6 +12,10 @@ module View
 		"Game over"
 	end
 
+	def self.display_turn(symbol)
+		"It is now #{symbol}'s Turn."
+	end
+
 	def self.spot_picked(symbol, spot)
 		"#{symbol} has picked Spot #{spot}."
 	end
