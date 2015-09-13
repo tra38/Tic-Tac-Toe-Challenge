@@ -1,9 +1,13 @@
 require_relative 'game'
 require_relative 'board'
 require_relative 'view'
+require_relative 'options'
 
 board = Board.new
-game = Game.new(board.board)
+
+values = Options.set_options(board)
+
+game = Game.new(values)
 
 puts "\e[H\e[2J" #clear the screen, only works on ANSI-supported screens (source: http://stackoverflow.com/a/263650)
 

@@ -8,8 +8,8 @@ class Game
   attr_accessor :current_player, :next_player
   include StatusChecking
 
-  def initialize(board)
-    @board = board
+  def initialize(args)
+    @board = args[:board]
     @player_one = Player.new(type: :human, symbol: "O")
     @player_two = Player.new(type: :computer, symbol: "X")
     @current_player = @player_one
@@ -56,7 +56,8 @@ class Game
         spot = 4
         @board[spot] = @current_player.symbol
       else
-        spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
+        fitness = FitnessCalculator.new(computer: current_player, opponent: self.next_player)
+        spot = fitness.get_best_move(current_player.symbol, self.board)
         self.board[spot] = @current_player.symbol
       end
     end

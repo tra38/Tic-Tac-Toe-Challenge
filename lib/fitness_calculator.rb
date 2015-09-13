@@ -11,7 +11,6 @@ class FitnessCalculator
     @opponent = args[:opponent]
     @current_player = @computer
     @next_player = @opponent
-    @fitness = nil
   end
 
   def calcuate_available_spaces(board)

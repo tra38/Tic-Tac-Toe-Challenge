@@ -4,6 +4,10 @@ module View
 		"Welcome to my Tic Tac Toe game"
 	end
 
+	def self.options_menu
+		"Welcome to the options menu! Have fun!"
+	end
+
 	def self.instructions
 		"Please select your spot. Only the spaces between 0-8"
 	end
