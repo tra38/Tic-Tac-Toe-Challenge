@@ -10,9 +10,9 @@ class Player
     @symbol
   end
 
-  def fitness_calculator(opponent: opponent, board: board)
-    fitness = FitnessCalculator.new(computer: self, opponent: opponent)
-    fitness.get_best_move(self.symbol, board)
+  def fitness_calculator(args)
+    fitness = FitnessCalculator.new(computer: self, opponent: args[:opponent])
+    fitness.get_best_move(self.symbol, args[:board])
   end
 
 end

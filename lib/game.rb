@@ -56,8 +56,7 @@ class Game
         spot = 4
         @board[spot] = @current_player.symbol
       else
-        fitness = FitnessCalculator.new(computer: current_player, opponent: self.next_player)
-        spot = fitness.get_best_move(current_player.symbol, self.board)
+        spot = current_player.fitness_calculator(computer: current_player, opponent: self.next_player, board: self.board)
         self.board[spot] = @current_player.symbol
       end
     end
