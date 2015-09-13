@@ -11,17 +11,16 @@ module View
 		<<-eos
 
 		0 - Let's play!
-		1 - Allow #{player_two.symbol} go first!
+		1 - Allow #{player_two.symbol} to go first!
 
 		eos
 	end
 
 	def self.current_options(options_hash)
-		"HI!"
-		# player_one = options_hash[:player_one]
-		# player_two = options_hash[:player_two]
-		# <<-eos This will be a #{player_one.symbol} (#{player_one.type}) versus a #{player_two.symbol} (#{player_two.type}) match. #{player_one.symbol} will go first.
-		# eos
+		player_one = options_hash[:player_one]
+		player_two = options_hash[:player_two]
+		<<-eos "This will be a #{player_one.symbol} (#{player_one.type}) versus a #{player_two.symbol} (#{player_two.type}) match. #{player_one.symbol} will go first."
+		eos
 	end
 
 	def self.invalid_option_selection(input)
