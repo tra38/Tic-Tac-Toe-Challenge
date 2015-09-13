@@ -12,6 +12,10 @@ module View
 		"Game over"
 	end
 
+	def self.spot_picked(symbol, spot)
+		"#{symbol} has picked Spot #{spot}."
+	end
+
 	def self.display_error(spot)
 		"I am sorry, but Spot #{spot} is an invalid choice to make. Please make another selection."
 	end

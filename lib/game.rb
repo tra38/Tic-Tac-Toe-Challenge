@@ -40,6 +40,7 @@ class Game
     spot = human_input
     if ((0..8).include?(spot.to_i) && @board[spot.to_i] != (@com.symbol || @hum.symbol) && spot.to_i.to_s == spot.to_s)
       @board[spot.to_i] = @hum.symbol
+      puts View.spot_picked(@hum.symbol, spot)
     else
       puts View.display_error(spot)
       get_human_spot
@@ -57,5 +58,6 @@ class Game
         self.board[spot] = @com.symbol
       end
     end
+    puts View.spot_picked(@com.symbol, spot)
   end
 end
