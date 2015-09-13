@@ -7,8 +7,10 @@ class FitnessCalculator
   include StatusChecking
 
   def initialize(args)
-    @hum = args[:com]
-    @com = args[:hum]
+    @player_one = args[:hum]
+    @player_two = args[:com]
+    @hum = args[:hum]
+    @com = args[:com]
     @fitness = nil
   end
 

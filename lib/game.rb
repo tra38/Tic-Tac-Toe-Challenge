@@ -10,11 +10,11 @@ class Game
 
   def initialize(board)
     @board = board
-    @com = Player.new(type: :computer, symbol: "X")
-    @hum = Player.new(type: :human, symbol: "O")
-    @fitness = FitnessCalculator.new(board: board, com: @com, hum: @hum)
-    @current_player = @hum
-    @next_player = @com
+    @player_one = Player.new(type: :human, symbol: "O")
+    @player_two = Player.new(type: :computer, symbol: "X")
+    @fitness = FitnessCalculator.new(board: board, com: @player_two, hum: @player_one)
+    @current_player = @player_one
+    @next_player = @player_two
   end
 
   def has_ended?
@@ -37,9 +37,9 @@ class Game
 
   def get_human_spot
     spot = human_input
-    if ((0..8).include?(spot.to_i) && @board[spot.to_i] != (@com.symbol || @hum.symbol) && spot.to_i.to_s == spot.to_s)
-      @board[spot.to_i] = @hum.symbol
-      puts View.spot_picked(@hum.symbol, spot)
+    if ((0..8).include?(spot.to_i) && @board[spot.to_i] != (@player_one.symbol || @player_two.symbol) && spot.to_i.to_s == spot.to_s)
+      @board[spot.to_i] = @current_player.symbol
+      puts View.spot_picked(@current_player.symbol, spot)
     else
       puts View.display_error(spot)
       get_human_spot
@@ -51,12 +51,12 @@ class Game
     until spot
       if @board[4] == "4"
         spot = 4
-        @board[spot] = @com.symbol
+        @board[spot] = @current_player.symbol
       else
-        spot = fitness.get_best_move(@com.symbol, board)
-        self.board[spot] = @com.symbol
+        spot = fitness.get_best_move(@current_player.symbol, board)
+        self.board[spot] = @current_player.symbol
       end
     end
-    puts View.spot_picked(@com.symbol, spot)
+    puts View.spot_picked(@current_player.symbol, spot)
   end
 end

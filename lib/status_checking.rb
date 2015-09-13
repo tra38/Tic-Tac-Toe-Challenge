@@ -12,7 +12,7 @@ module StatusChecking
 	end
 
 	def tie?(b)
-	  b.all? { |s| s == @com.symbol || s == @hum.symbol }
+	  b.all? { |s| s == @player_one.symbol || s == @player_two.symbol }
 	end
 
 end
