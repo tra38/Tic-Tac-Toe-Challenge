@@ -1,23 +1,23 @@
 require_relative 'status_checking'
 
 class FitnessCalculator
-  attr_reader :com, :hum
-  attr_accessor :fitness
+  attr_reader :computer, :opponent
+  attr_accessor :fitness, :current_player, :next_player
 
   include StatusChecking
 
   def initialize(args)
-    @player_one = args[:hum]
-    @player_two = args[:com]
-    @hum = args[:hum]
-    @com = args[:com]
+    @computer = args[:computer]
+    @opponent = args[:opponent]
+    @current_player = @computer
+    @next_player = @opponent
     @fitness = nil
   end
 
   def calcuate_available_spaces(board)
     array = []
     board.each do |s|
-      if s != @com.symbol && s != @hum.symbol
+      if s != @computer.symbol && s != @opponent.symbol
         array << s
       end
     end
@@ -25,12 +25,12 @@ class FitnessCalculator
   end
 
   def computer_can_win?(future_board, space)
-    future_board[space.to_i] = @com.symbol
+    future_board[space.to_i] = @computer.symbol
     return true if game_is_over(future_board)
   end
 
-  def human_can_win?(future_board, space)
-    future_board[space.to_i] = @hum.symbol
+  def opponent_can_win?(future_board, space)
+    future_board[space.to_i] = @opponent.symbol
     return true if game_is_over(future_board)
   end
 
@@ -66,16 +66,16 @@ class FitnessCalculator
   end
 
   def evaluate_fitness_of_space(space, board, current_player, original_move=space, depth=0)
-    if current_player == @com.symbol
-      next_player = @hum.symbol
+    if current_player == @computer.symbol
+      next_player = @opponent.symbol
     else
-      next_player = @com.symbol
+      next_player = @computer.symbol
     end
     future_board = board.dup
     if computer_can_win?(future_board, space)
       priortize_this_move(original_move) if depth == 0
       increase_fitness_for_winning(original_move)
-    elsif human_can_win?(future_board, space)
+    elsif opponent_can_win?(future_board, space)
       priortize_this_move(original_move) if depth == 0
       decrease_fitness_for_losing(original_move)
     elsif tie?(future_board)

@@ -37,12 +37,19 @@ RSpec.describe Game do
       expect(View).to receive(:display_error).with("dog")
       @game.get_human_spot
     end
+
+    it "- reject spaces already taken" do
+      allow(@game).to receive(:human_input).and_return(5,5,6)
+      expect(View).to receive(:display_error).with(5)
+      2.times { @game.get_human_spot }
+    end
   end
 
   context "allows computer to make moves" do
-    it "allows computer to move" do
-      @game.get_computer_spot
-      expect(@game.board).to eq(["0","1","2","3","X","5","6","7","8"])
+    it "- successfully makes move after the human" do
+      allow(@game).to receive(:human_input).and_return(2)
+      2.times { @game.get_next_move }
+      expect(@game.board).to eq(["0","1","O","3","X","5","6","7","8"])
     end
   end
 

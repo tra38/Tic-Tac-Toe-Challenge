@@ -12,7 +12,6 @@ class Game
     @board = board
     @player_one = Player.new(type: :human, symbol: "O")
     @player_two = Player.new(type: :computer, symbol: "X")
-    @fitness = FitnessCalculator.new(board: board, com: @player_two, hum: @player_one)
     @current_player = @player_one
     @next_player = @player_two
   end
@@ -37,13 +36,17 @@ class Game
 
   def get_human_spot
     spot = human_input
-    if ((0..8).include?(spot.to_i) && @board[spot.to_i] != (@player_one.symbol || @player_two.symbol) && spot.to_i.to_s == spot.to_s)
+    if valid_move?(spot)
       @board[spot.to_i] = @current_player.symbol
       puts View.spot_picked(@current_player.symbol, spot)
     else
       puts View.display_error(spot)
       get_human_spot
     end
+  end
+
+  def valid_move?(spot)
+    (0..8).include?(spot.to_i) && @board[spot.to_i] != (@player_one.symbol) && @board[spot.to_i] != (@player_two.symbol) && spot.to_i.to_s == spot.to_s
   end
 
   def get_computer_spot
@@ -53,7 +56,7 @@ class Game
         spot = 4
         @board[spot] = @current_player.symbol
       else
-        spot = fitness.get_best_move(@current_player.symbol, board)
+        spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
         self.board[spot] = @current_player.symbol
       end
     end
