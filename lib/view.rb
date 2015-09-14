@@ -12,6 +12,7 @@ module View
 
 		0 - Let's play!
 		1 - Allow #{player_two.symbol} to go first!
+		2 - Change the symbols!
 
 		eos
 	end
