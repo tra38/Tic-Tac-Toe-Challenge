@@ -5,8 +5,9 @@ require 'stringio'
 RSpec.describe Game do
   before(:each) {
     @board = Board.new
-    @game = Game.new(@board.board)
+    @game = Game.new( {board: @board.board, player_one: Player.new(type: :human, symbol: "O"), player_two: Player.new(type: :computer, symbol: "X")} )
   }
+
 	it "starts with a blank board" do
 		expect(@game.board).to eq(["0","1","2","3","4","5","6","7","8"])
 	end
@@ -51,6 +52,21 @@ RSpec.describe Game do
       2.times { @game.get_next_move }
       expect(@game.board).to eq(["0","1","O","3","X","5","6","7","8"])
     end
+  end
+
+end
+
+RSpec.describe Game do
+  before(:all) do
+  @board = Board.new
+  @game = Game.new( {board: @board.board, player_one: Player.new(type: :computer, symbol: "O"), player_two: Player.new(type: :computer, symbol: "X")} )
+  end
+
+
+  it "ensures no one wins" do
+    9.times { @game.get_next_move }
+    expect(@game.tie?(@board.board)).to eq(true)
+    expect(@game.game_is_over?(@board.board)).to eq(false)
   end
 
 end
