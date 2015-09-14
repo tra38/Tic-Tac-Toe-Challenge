@@ -12,7 +12,7 @@ module StatusChecking
 	end
 
 	def tie?(b)
-	  b.all? { |s| s == @current_player.symbol || s == @next_player.symbol }
+	  b.all? { |s| s == current_player.symbol || s == next_player.symbol }
 	end
 
 end

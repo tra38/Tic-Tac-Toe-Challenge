@@ -43,7 +43,7 @@ module View
 	end
 
 	def self.instructions
-		"Please select your spot. Only the spaces between 0-8"
+		"Please select your spot. Only the spaces between 1-9"
 	end
 
 	def self.game_over

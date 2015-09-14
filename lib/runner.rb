@@ -19,9 +19,9 @@ puts View.instructions
 
 until game.has_ended?
 	game.get_next_move
-  sleep(1.25)
-  puts View.clear
-  puts board
+	sleep(1.25)
+	puts View.clear
+	puts board
 end
 
 puts View.game_over
