@@ -62,4 +62,9 @@ module View
 		"I am sorry, but Spot #{spot} is an invalid choice to make. Please make another selection."
 	end
 
+	#clear the screen, only works on ANSI-supported screens (source: http://stackoverflow.com/a/263650)
+	def self.clear
+		"\e[H\e[2J"
+	end
+
 end
