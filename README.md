@@ -13,5 +13,5 @@ To play, run lib/runner.rb!
 
 *Features to Add
 - [ ] Allow users to choose between three modes: Human vs Human, Computer vs Computer, and Human vs Computer
-- [ ] Allow users to decide who goes first
-- [ ] Allow users to decide what "marker" each player can use (traditionally, it's Xs and Os)
+- [X] Allow users to decide who goes first
+- [X] Allow users to decide what "marker" each player can use (traditionally, it's Xs and Os)
