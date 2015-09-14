@@ -10,10 +10,8 @@ class Game
 
   def initialize(args)
     @board = args[:board]
-    @player_one = args[:player_one]
-    @player_two = args[:player_two]
-    @current_player = @player_one
-    @next_player = @player_two
+    @current_player = args[:player_one]
+    @next_player = args[:player_two]
   end
 
   def has_ended?
@@ -46,7 +44,7 @@ class Game
   end
 
   def valid_move?(spot)
-    (0..8).include?(spot.to_i) && board[spot.to_i] != (self.player_one.symbol) && board[spot.to_i] != (self.player_two.symbol) && spot.to_i.to_s == spot.to_s
+    (0..8).include?(spot.to_i) && board[spot.to_i] != (self.current_player.symbol) && board[spot.to_i] != (self.next_player.symbol) && spot.to_i.to_s == spot.to_s
   end
 
   def get_computer_spot
