@@ -4,15 +4,25 @@ module View
 		"Welcome to my Tic Tac Toe game"
 	end
 
+	def self.choose_type_of_match
+		<<-eos
+		Choose what type of match you want to play:
+
+		1 - Human versus Human
+		2 - Human versus Computer
+		3 - Computer versus Computer
+		eos
+	end
+
 	def self.options_menu(options_hash)
 		player_one = options_hash[:player_one]
 		player_two = options_hash[:player_two]
 
 		<<-eos
 
-		0 - Let's play!
-		1 - Allow #{player_two.symbol} to go first!
-		2 - Change the symbols!
+		1 - Let's play!
+		2 - Allow #{player_two.symbol} to go first!
+		3 - Change the symbols!
 
 		eos
 	end
