@@ -25,12 +25,12 @@ class FitnessCalculator
 
   def computer_can_win?(future_board, space)
     future_board[space.to_i] = @computer.symbol
-    return true if game_is_over(future_board)
+    return true if game_is_over?(future_board)
   end
 
   def opponent_can_win?(future_board, space)
     future_board[space.to_i] = @opponent.symbol
-    return true if game_is_over(future_board)
+    return true if game_is_over?(future_board)
   end
 
   def increase_fitness_for_winning(original_move)
