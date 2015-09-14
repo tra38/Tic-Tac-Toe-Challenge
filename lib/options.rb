@@ -11,6 +11,13 @@ module Options
     @options_hash = { board: board.board, player_one: Player.new(type: :human, symbol: "O"), player_two: Player.new(type: :computer, symbol: "X") }
   end
 
+  def self.change_symbols
+    puts View.change_symbol(@options_hash[:player_one])
+    @options_hash[:player_one].symbol = gets.chomp
+    puts View.change_symbol(@options_hash[:player_two])
+    @options_hash[:player_two].symbol = gets.chomp
+  end
+
   def self.get_user_input
     puts View.current_options(@options_hash)
     puts View.options_menu(@options_hash)
@@ -19,6 +26,9 @@ module Options
     when "0"
     when "1"
       @options_hash[:player_one], @options_hash[:player_two] = @options_hash[:player_two], @options_hash[:player_one]
+      get_user_input
+    when "2"
+      change_symbols
       get_user_input
     else
       View.invalid_option_selection(input)

@@ -23,6 +23,10 @@ module View
 		eos
 	end
 
+	def self.change_symbol(symbol)
+		"Type in the new symbol to replace #{symbol}"
+	end
+
 	def self.invalid_option_selection(input)
 		"I am sorry but #{input} is an invalid selection. Please try again."
 	end

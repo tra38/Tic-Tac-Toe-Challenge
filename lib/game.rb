@@ -10,8 +10,8 @@ class Game
 
   def initialize(args)
     @board = args[:board]
-    @player_one = Player.new(type: :human, symbol: "O")
-    @player_two = Player.new(type: :computer, symbol: "X")
+    @player_one = args[:player_one]
+    @player_two = args[:player_two]
     @current_player = @player_one
     @next_player = @player_two
   end
