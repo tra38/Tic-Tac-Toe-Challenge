@@ -1,6 +1,6 @@
 Readme
 
-To play, run lib/runner.rb!
+To play, run lib/runner.rb
 
 ©2015 Command Line Games Inc., All Rights Reserved
 
