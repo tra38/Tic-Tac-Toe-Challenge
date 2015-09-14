@@ -15,7 +15,7 @@ class Game
   end
 
   def has_ended?
-    game_is_over?(board) || tie?(board)
+    someone_won?(board) || tie?(board)
   end
 
   def get_next_move
