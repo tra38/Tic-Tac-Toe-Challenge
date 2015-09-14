@@ -62,7 +62,7 @@ RSpec.describe Game do
   @game = Game.new( {board: @board.board, player_one: Player.new(type: :computer, symbol: "O"), player_two: Player.new(type: :computer, symbol: "X")} )
   end
 
-  it "ensures no one wins" do
+  it "ensures no one wins in a match between two computers" do
     9.times { @game.get_next_move }
     expect(@game.tie?(@board.board)).to eq(true)
     expect(@game.game_is_over?(@board.board)).to eq(false)
