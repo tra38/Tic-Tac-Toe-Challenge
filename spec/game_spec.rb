@@ -64,6 +64,7 @@ RSpec.describe Game do
 
   it "ensures no one wins in a match between two computers" do
     9.times { @game.get_next_move }
+    puts @board
     expect(@game.tie?(@board.board)).to eq(true)
     expect(@game.someone_won?(@board.board)).to eq(false)
   end

@@ -49,8 +49,7 @@ class Game
 
   def get_computer_spot
     spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
-    spot = spot.sample.to_i
-    self.board[spot] = current_player.symbol
+    self.board[spot.to_i] = current_player.symbol
     puts View.spot_picked(current_player.symbol, spot)
   end
 end
