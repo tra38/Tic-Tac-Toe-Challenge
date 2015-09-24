@@ -12,7 +12,7 @@ class Player
 
   def fitness_calculator(args)
     fitness = FitnessCalculator.new(computer: self, opponent: args[:opponent])
-    fitness.get_best_move(self.symbol, args[:board])
+    fitness.get_best_moves(args[:board])
   end
 
 end
