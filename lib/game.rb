@@ -48,8 +48,11 @@ class Game
   end
 
   def get_computer_spot
-    if
-    spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
+    if valid_move?("4")
+      spot = "4"
+    else
+      spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
+    end
     self.board[spot.to_i] = current_player.symbol
     puts View.spot_picked(current_player.symbol, spot)
   end
