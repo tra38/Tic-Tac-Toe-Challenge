@@ -67,4 +67,8 @@ module View
 		"\e[H\e[2J"
 	end
 
+	def self.display_thinking(symbol)
+		"#{symbol} is thinking..."
+	end
+
 end

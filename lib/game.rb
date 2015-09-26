@@ -51,6 +51,7 @@ class Game
     if valid_move?("4")
       spot = "4"
     else
+      puts View.display_thinking(current_player.symbol)
       spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
     end
     self.board[spot.to_i] = current_player.symbol
