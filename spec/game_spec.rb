@@ -105,7 +105,7 @@ def medium_ai(board)
   end
 end
 RSpec.describe Game do
-  it "will successfully beat the Medium AI 25 times" do
+  it "will successfully beat or tie the Medium AI 25 times" do
     25.times do |number|
       puts "Attempt number #{number}"
       @board = Board.new
