@@ -105,8 +105,8 @@ def medium_ai(board)
   end
 end
 RSpec.describe Game do
-  it "will successfully beat a random AI 100 times" do
-    100.times do |number|
+  it "will successfully beat a random AI 25 times" do
+    25.times do |number|
       puts "Attempt number #{number}"
       @board = Board.new
       @game = Game.new( {board: @board.board, player_one: Player.new(type: :human, symbol: "X"), player_two: Player.new(type: :computer, symbol: "O")} )
