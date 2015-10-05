@@ -5,23 +5,23 @@ require_relative 'options'
 
 board = Board.new
 
-puts View.clear
+View.clear
 
-puts View.welcome
+View.welcome
 values = Options.set_options(board)
 
 game = Game.new(values)
 
-puts View.clear
+View.clear
 
-puts board
-puts View.instructions
+View.display_board(board)
+View.instructions
 
 until game.has_ended?
 	game.get_next_move
 	sleep(1.25)
-	puts View.clear
-	puts board
+	View.clear
+	View.display_board(board)
 end
 
-puts View.game_over
+View.game_over

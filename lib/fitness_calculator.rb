@@ -24,9 +24,13 @@ class FitnessCalculator
   end
 
   def get_best_moves(board)
-    fitness = examine_possible_moves(board)
-    best_moves = fitness.select { |k,v| v == fitness.values.max }
-    best_moves.keys[0]
+    if calcuate_available_spaces(board).include?("4") 
+      "4"
+    else
+      fitness = examine_possible_moves(board)
+      best_moves = fitness.select { |k,v| v == fitness.values.max }
+      best_moves.keys[0]
+    end
   end
 
   def examine_possible_moves(board)
