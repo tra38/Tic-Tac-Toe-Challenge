@@ -19,7 +19,7 @@ class Game
   end
 
   def get_next_move
-    puts View.display_turn(current_player.symbol)
+    View.display_turn(current_player.symbol)
     if current_player.type == :human
       get_human_spot
     else
@@ -36,9 +36,9 @@ class Game
     spot = (human_input)
     if valid_move?(spot)
       self.board[spot.to_i] = current_player.symbol
-      puts View.spot_picked(self.current_player.symbol, spot)
+      View.spot_picked(self.current_player.symbol, spot)
     else
-      puts View.display_error(spot)
+      View.display_error(spot)
       get_human_spot
     end
   end
@@ -48,13 +48,9 @@ class Game
   end
 
   def get_computer_spot
-    if valid_move?("4")
-      spot = "4"
-    else
-      puts View.display_thinking(current_player.symbol)
-      spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
-    end
+    View.display_thinking(current_player.symbol)
+    spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
     self.board[spot.to_i] = current_player.symbol
-    puts View.spot_picked(current_player.symbol, spot)
+    View.spot_picked(current_player.symbol, spot)
   end
 end
