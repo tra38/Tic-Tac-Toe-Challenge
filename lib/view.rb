@@ -38,6 +38,10 @@ module View
 		puts "Type in the new symbol to replace #{symbol}"
 	end
 
+	def self.symbol_error
+		puts "You cannot select the same symbol twice! Plelase choose different symbols for each player."
+	end
+
 	def self.invalid_option_selection(input)
 		puts "I am sorry but #{input} is an invalid selection. Please try again."
 	end

@@ -25,9 +25,16 @@ module Options
 
   def self.change_symbols
     View.change_symbol(@options_hash[:player_one])
-    @options_hash[:player_one].symbol = gets.chomp
+    player_one_symbol = gets.chomp
     View.change_symbol(@options_hash[:player_two])
-    @options_hash[:player_two].symbol = gets.chomp
+    player_two_symbol = gets.chomp
+    if player_one_symbol == player_two_symbol
+      View.symbol_error
+      change_symbols
+    else
+      @options_hash[:player_one].symbol = player_one_symbol
+      @options_hash[:player_two].symbol = player_two_symbol
+    end
   end
 
   def self.modify_options
