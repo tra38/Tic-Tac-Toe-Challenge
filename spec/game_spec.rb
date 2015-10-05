@@ -9,14 +9,14 @@ RSpec.describe Game do
   }
 
 	it "starts with a blank board" do
-		expect(@game.board).to eq(["0","1","2","3","4","5","6","7","8"])
+		expect(@game.board).to eq(["1","2","3","4","5","6","7","8","9"])
 	end
 
   context "allows humans to make moves" do
     it "- allows player to move" do
-      allow(@game).to receive(:human_input).and_return(2)
+      allow(@game).to receive(:human_input).and_return(3)
       @game.get_human_spot
-      expect(@game.board).to eq(["0","1","O","3","4","5","6","7","8"])
+      expect(@game.board).to eq(["1","2","O","4","5","6","7","8","9"])
     end
   end
 
@@ -27,9 +27,9 @@ RSpec.describe Game do
       @game.get_human_spot
     end
 
-    it "- rejects 9 as an invalid input" do
-      allow(@game).to receive(:human_input).and_return(9,5)
-      expect(View).to receive(:display_error).with(9)
+    it "- rejects 0 as an invalid input" do
+      allow(@game).to receive(:human_input).and_return(0,5)
+      expect(View).to receive(:display_error).with(0)
       @game.get_human_spot
     end
 
@@ -48,9 +48,9 @@ RSpec.describe Game do
 
   context "allows computer to make moves" do
     it "- successfully makes move after the human" do
-      allow(@game).to receive(:human_input).and_return(2)
+      allow(@game).to receive(:human_input).and_return(3)
       2.times { @game.get_next_move }
-      expect(@game.board).to eq(["0","1","O","3","X","5","6","7","8"])
+      expect(@game.board).to eq(["1","2","O","4","X","6","7","8","9"])
     end
   end
 
@@ -81,19 +81,19 @@ def medium_ai(board)
     end
   end
   available_spaces.each do |as|
-    board[as.to_i] = "X"
+    index = as.to_i - 1
+    board[index] = "X"
     if @game.someone_won?(board)
       best_move = as.to_i
-      board[as.to_i] = as
+      board[index] = as
       return best_move
     else
-      board[as.to_i] = "O"
+      board[index] = "O"
       if @game.someone_won?(board)
         best_move = as.to_i
-        board[as.to_i] = as
         return best_move
       else
-        board[as.to_i] = as
+        board[index] = as
       end
     end
   end
@@ -116,7 +116,7 @@ RSpec.describe Game do
       end
       puts @board
       if (@game.someone_won?(@board.board))
-        expect(@game.next_player.type).to eq(:computer)
+        expect(@game.current_player.type).to eq(:computer)
       else
         expect(@game.tie?(@board.board)).to eq(true)
       end

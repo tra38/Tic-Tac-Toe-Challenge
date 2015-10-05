@@ -15,16 +15,20 @@ class FitnessCalculator
 
   def calcuate_available_spaces(board)
     array = []
-    board.each do |s|
-      if s != @computer.symbol && s != @opponent.symbol
-        array << s
+    board.each do |spot|
+      if spot != @computer.symbol && spot != @opponent.symbol
+        array << translate_spot_to_index(spot)
       end
     end
     array
   end
 
+  def translate_spot_to_index(spot)
+    spot.to_i - 1
+  end
+
   def get_best_moves(board)
-    if calcuate_available_spaces(board).include?("4") 
+    if board[4] != @computer.symbol && board[4] != @opponent.symbol
       "4"
     else
       fitness = examine_possible_moves(board)

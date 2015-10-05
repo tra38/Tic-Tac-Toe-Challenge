@@ -28,14 +28,23 @@ class Game
     self.next_player, self.current_player = self.current_player, self.next_player
   end
 
+  def translate_spot_to_index(spot)
+    spot.to_i - 1
+  end
+
+  def translate_index_to_spot(index)
+    index.to_i + 1
+  end
+
   def human_input
     gets.chomp
   end
 
   def get_human_spot
     spot = (human_input)
-    if valid_move?(spot)
-      self.board[spot.to_i] = current_player.symbol
+    index = translate_spot_to_index(spot)
+    if valid_move?(index)
+      self.board[index] = current_player.symbol
       View.spot_picked(self.current_player.symbol, spot)
     else
       View.display_error(spot)
@@ -43,14 +52,15 @@ class Game
     end
   end
 
-  def valid_move?(spot)
-    (0..8).include?(spot.to_i) && board[spot.to_i] != (self.current_player.symbol) && board[spot.to_i] != (self.next_player.symbol) && spot.to_i.to_s == spot.to_s
+  def valid_move?(index)
+    (0..8).include?(index.to_i) && board[index.to_i] != (self.current_player.symbol) && board[index.to_i] != (self.next_player.symbol) && index.to_i.to_s == index.to_s
   end
 
   def get_computer_spot
     View.display_thinking(current_player.symbol)
-    spot = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
-    self.board[spot.to_i] = current_player.symbol
+    index = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
+    self.board[index.to_i] = current_player.symbol
+    spot = translate_index_to_spot(index)
     View.spot_picked(current_player.symbol, spot)
   end
 end
