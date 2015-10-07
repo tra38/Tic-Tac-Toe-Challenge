@@ -8,7 +8,7 @@ board = Board.new
 View.clear
 
 View.welcome
-values = Options.set_options(board)
+values = Options.new(board).options_hash
 
 game = Game.new(values)
 

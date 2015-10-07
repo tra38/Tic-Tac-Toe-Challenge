@@ -1,13 +1,13 @@
-module Options
+class Options
   attr_accessor :options_hash
 
-  def self.set_options(board)
-    Options.create_options_hash(board)
-    Options.modify_options
-    return @options_hash
+  def initialize(board)
+    @options_hash = {}
+    create_options_hash(board)
+    modify_options
   end
 
-  def self.create_options_hash(board)
+  def create_options_hash(board)
     View.choose_type_of_match
     input = gets.chomp
     case input
@@ -23,7 +23,7 @@ module Options
     end
   end
 
-  def self.change_symbols
+  def change_symbols
     View.change_symbol(@options_hash[:player_one])
     player_one_symbol = gets.chomp
     View.change_symbol(@options_hash[:player_two])
@@ -37,7 +37,7 @@ module Options
     end
   end
 
-  def self.modify_options
+  def modify_options
     View.current_options(@options_hash)
     View.options_menu(@options_hash)
     input = gets.chomp
