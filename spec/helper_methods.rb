@@ -11,19 +11,10 @@ def medium_ai(board)
   available_spaces.each do |as|
     index = as.to_i - 1
     duplicate_board[index] = "X"
-    if @game.someone_won?(board)
-      best_move = as.to_i
-      duplicate_board[index] = as
-      return best_move
-    else
-      duplicate_board[index] = "O"
-      if @game.someone_won?(board)
-        best_move = as.to_i
-        return best_move
-      else
-        duplicate_board[index] = as
-      end
-    end
+    return as if @game.someone_won?(duplicate_board)
+    duplicate_board[index] = "O"
+    return as if @game.someone_won?(duplicate_board)
+    duplicate_board[index] = as
   end
   available_spaces.sample
 end
