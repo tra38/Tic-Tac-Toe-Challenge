@@ -19,6 +19,7 @@ View.instructions
 
 until game.has_ended?
 	View.display_turn(game.current_player.symbol)
+	View.display_thinking(current_player.symbol) if (game.current_player.type == :computer)
 	spot = game.get_next_move
 	View.spot_picked(game.current_player.symbol, spot)
 	game.switch_players

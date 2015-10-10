@@ -59,7 +59,6 @@ class Game
   end
 
   def get_computer_spot
-    View.display_thinking(current_player.symbol)
     index = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
     self.board[index.to_i] = current_player.symbol
     spot = translate_index_to_spot(index)
