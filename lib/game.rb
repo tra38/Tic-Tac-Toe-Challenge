@@ -19,7 +19,6 @@ class Game
   end
 
   def get_next_move
-    View.display_turn(current_player.symbol)
     if current_player.type == :human
       get_human_spot
     else

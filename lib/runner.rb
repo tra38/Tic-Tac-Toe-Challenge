@@ -18,6 +18,7 @@ View.display_board(board)
 View.instructions
 
 until game.has_ended?
+	View.display_turn(game.current_player.symbol)
 	game.get_next_move
 	sleep(1.25)
 	View.clear
