@@ -71,39 +71,6 @@ RSpec.describe Game do
 
 end
 
-# #This "medium_ai" was the original implementation of the "Tic-Tac Toe" AI, before we had to rewrite it.
-def medium_ai(board)
-  available_spaces = []
-  best_move = nil
-  board.each do |s|
-    if s != "X" && s != "O"
-      available_spaces << s
-    end
-  end
-  available_spaces.each do |as|
-    index = as.to_i - 1
-    board[index] = "X"
-    if @game.someone_won?(board)
-      best_move = as.to_i
-      board[index] = as
-      return best_move
-    else
-      board[index] = "O"
-      if @game.someone_won?(board)
-        best_move = as.to_i
-        return best_move
-      else
-        board[index] = as
-      end
-    end
-  end
-  if best_move
-    return best_move
-  else
-    n = rand(0..available_spaces.count)
-    return available_spaces[n].to_i
-  end
-end
 RSpec.describe Game do
   it "will successfully beat or tie the Medium AI 25 times" do
     25.times do |number|
@@ -117,7 +84,7 @@ RSpec.describe Game do
       end
       puts @board
       if (@game.someone_won?(@board.board))
-        expect(@game.current_player.type).to eq(:computer)
+        expect(@game.next_player.type).to eq(:computer)
       else
         expect(@game.tie?(@board.board)).to eq(true)
       end
