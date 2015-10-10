@@ -49,7 +49,7 @@ RSpec.describe Game do
   context "allows computer to make moves" do
     it "- successfully makes move after the human" do
       allow(@game).to receive(:human_input).and_return(3)
-      2.times { @game.get_next_move }
+      2.times { @game.get_next_move; @game.switch_players }
       expect(@game.board).to eq(["1","2","O","4","X","6","7","8","9"])
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe Game do
   end
 
   it "ensures no one wins in a match between two computers" do
-    9.times { @game.get_next_move }
+    9.times { @game.get_next_move; @game.switch_players }
     puts @board
     expect(@game.tie?(@board.board)).to eq(true)
     expect(@game.someone_won?(@board.board)).to eq(false)
@@ -113,6 +113,7 @@ RSpec.describe Game do
       allow(@game).to receive(:human_input) { medium_ai(@game.board) }
       until @game.has_ended?
         @game.get_next_move
+        @game.switch_players
       end
       puts @board
       if (@game.someone_won?(@board.board))

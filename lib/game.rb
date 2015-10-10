@@ -24,6 +24,9 @@ class Game
     else
       get_computer_spot
     end
+  end
+
+  def switch_players
     self.next_player, self.current_player = self.current_player, self.next_player
   end
 
@@ -44,7 +47,7 @@ class Game
     index = translate_spot_to_index(spot)
     if valid_move?(index)
       self.board[index] = current_player.symbol
-      View.spot_picked(self.current_player.symbol, spot)
+      return spot
     else
       View.display_error(spot)
       get_human_spot
@@ -60,6 +63,6 @@ class Game
     index = current_player.fitness_calculator(opponent: self.next_player, board: self.board)
     self.board[index.to_i] = current_player.symbol
     spot = translate_index_to_spot(index)
-    View.spot_picked(current_player.symbol, spot)
+    return spot
   end
 end
