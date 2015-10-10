@@ -1,6 +1,5 @@
 require_relative '../lib/game.rb'
 require_relative '../lib/board.rb'
-require 'stringio'
 
 RSpec.describe Game do
 	before(:each) {

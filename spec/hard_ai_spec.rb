@@ -1,7 +1,6 @@
 require_relative '../lib/game.rb'
 require_relative '../lib/board.rb'
 require_relative 'helper_methods.rb'
-require 'stringio'
 
 
 RSpec.describe "Hard AI" do
